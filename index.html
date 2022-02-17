@@ -313,9 +313,9 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
+                        if (r["result"]["data"] === null) { continue; }
 
                         pages_loots = r["result"]["data"]
-
                         pages_loots.forEach(t => {
                             const looter_cra_reward = t.looter_cra_reward
                             const looter_tus_reward = t.looter_tus_reward
@@ -348,9 +348,7 @@
                             }
                         })
                     })
-
                     updateData("looting");
-
                 }).catch(function (error) {
                     console.error(error);
                     loading.innerHTML = error
@@ -377,11 +375,10 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
+                        if (r["result"]["data"] === null) { continue; }
 
                         pages_mines = r["result"]["data"]
-
                         pages_mines.forEach(t => {
-
                             const miner_cra_reward = t.miner_cra_reward
                             const miner_tus_reward = t.miner_tus_reward
                             const date = new Date(t.end_time * 1000)
@@ -413,7 +410,6 @@
                             }
 
                         })
-
                         updateData("mining");
                     })
                 }).catch(function (error) {
@@ -437,9 +433,9 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
+                        if (r["result"]["data"] === null) { continue; }
 
                         pages_outofgame = r["result"]["data"]
-
                         pages_outofgame.forEach(c => {
                             rentcrabsid.push(c.crabada_id)
                         })
@@ -468,6 +464,7 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
+                        if (r["result"]["data"] === null) { continue; }
 
                         pages_forlending = r["result"]["data"]
                         pages_forlending.forEach(c => {
@@ -497,6 +494,7 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
+                        if (r["result"]["data"] === null) { continue; }
 
                         pages_crabsinteams = r["result"]["data"]
                         pages_crabsinteams.forEach(c => {
@@ -545,6 +543,8 @@
                             let err = `${response.error_code} - ${response.message}`
                             throw err
                         }
+                        if (response["result"]["data"] === null) { continue; }
+
                         const transactions = response["result"]["data"]
                         transactions.forEach(t => {
                             const price = t.price
@@ -560,9 +560,7 @@
                             totalByDayRent[day].tus += price
                             totalByDayRent[day].rents += 1
                         })
-
                     })
-
                     updateData("renting");
                 }).catch(function (error) {
                     console.error(error);
