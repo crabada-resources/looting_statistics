@@ -313,7 +313,7 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
-                        if (r["result"]["data"] === null) { continue; }
+                        if (r["result"]["data"] === null) { return; }
 
                         pages_loots = r["result"]["data"]
                         pages_loots.forEach(t => {
@@ -375,7 +375,7 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
-                        if (r["result"]["data"] === null) { continue; }
+                        if (r["result"]["data"] === null) { return; }
 
                         pages_mines = r["result"]["data"]
                         pages_mines.forEach(t => {
@@ -433,7 +433,7 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
-                        if (r["result"]["data"] === null) { continue; }
+                        if (r["result"]["data"] === null) { return; }
 
                         pages_outofgame = r["result"]["data"]
                         pages_outofgame.forEach(c => {
@@ -464,7 +464,7 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
-                        if (r["result"]["data"] === null) { continue; }
+                        if (r["result"]["data"] === null) { return; }
 
                         pages_forlending = r["result"]["data"]
                         pages_forlending.forEach(c => {
@@ -494,7 +494,7 @@
                             let err = `${r.error_code} - ${r.message}`
                             throw err
                         }
-                        if (r["result"]["data"] === null) { continue; }
+                        if (r["result"]["data"] === null) { return; }
 
                         pages_crabsinteams = r["result"]["data"]
                         pages_crabsinteams.forEach(c => {
@@ -543,7 +543,7 @@
                             let err = `${response.error_code} - ${response.message}`
                             throw err
                         }
-                        if (response["result"]["data"] === null) { continue; }
+                        if (response["result"]["data"] === null) { return; }
 
                         const transactions = response["result"]["data"]
                         transactions.forEach(t => {
