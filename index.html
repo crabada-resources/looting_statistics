@@ -298,6 +298,7 @@
             if (loots.length == 0) {
                 results_text_loot.innerHTML += '<h4>Looting</h4>'
                 results_text_loot.innerHTML += `You didn't loot yet. Go loot!`
+                updateData("looting");
             }
             else {
                 // get all pages
@@ -361,6 +362,7 @@
             if (mines.length == 0) {
                 results_text_mine.innerHTML += '<h4>Mining</h4>'
                 results_text_mine.innerHTML += `You didn't mine yet. Go mine!`
+                updateData("mining");
             }
             else {
                 // get all pages
@@ -420,10 +422,12 @@
 
 
             const outofgame = responses[2]["result"]["data"] || []
+            const outofgamePages = responses[2]["result"]["totalPages"]
+
             if (outofgame.length > 0) {
                 // get all pages
                 pages_requests = []
-                for(let i = 1; i <= totalMinePages; i++){
+                for(let i = 1; i <= outofgamePages; i++){
                     pages_requests.push(fetch(`https://idle-api.crabada.com/public/idle/crabadas/out-game?user_address=${wallet}&order=desc&limit=50&page=${i}`).then(response => response.json()))
                 }
 
@@ -451,10 +455,11 @@
 
 
             const forlending = responses[3]["result"]["data"] || []
+            const forlendingPages = responses[3]["result"]["totalPages"]
             if (forlending.length > 0) {
                 // get all pages
                 pages_requests = []
-                for(let i = 1; i <= totalMinePages; i++){
+                for(let i = 1; i <= forlendingPages; i++){
                     pages_requests.push(fetch(`https://idle-api.crabada.com/public/idle/crabadas/for-lending?user_address=${wallet}&limit=50&page=${i}`).then(response => response.json()))
                 }
 
@@ -481,10 +486,11 @@
             }
 
             const crabsinteams = responses[4]["result"]["data"] || []
+            const crabsinteamsPages = responses[4]["result"]["totalPages"]
             if (crabsinteams.length > 0) {
                 // get all pages
                 pages_requests = []
-                for(let i = 1; i <= totalMinePages; i++){
+                for(let i = 1; i <= crabsinteamsPages; i++){
                     pages_requests.push(fetch(`https://idle-api.crabada.com/public/idle/teams?user_address=${wallet}&limit=20&page=${i}`).then(response => response.json()))
                 }
 
@@ -537,7 +543,6 @@
                     requestscrab.push(fetch(`https://idle-api.crabada.com/public/idle/crabadas/lending/history?crabada_id=${id}&limit=50`).then(response => response.json()))
                 })
                 Promise.all(requestscrab).then(function (responses) {
-                    console.log(responses)
                     responses.forEach(response => {
                         if (response.error_code) {
                             let err = `${response.error_code} - ${response.message}`
