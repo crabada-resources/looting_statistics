@@ -641,7 +641,7 @@
                     tableloot += `<table><thead><tr><th>Date</th><th>TUS</th><th>CRA</th><th>#Loots</th><th>Win rate</th></tr></thead><tbody>`
 
                     Object.keys(totalByDayLoot).sort(function (a, b) {
-                        return moment(b, 'YYYY-MM-DD').toDate() - moment(a, 'YYYY-MM-DD').toDate();
+                        return moment.utc(b, 'YYYY-MM-DD').toDate() - moment.utc(a, 'YYYY-MM-DD').toDate();
                     }).forEach(function (key) {
                         labels.push(key)
                         data_values.push((totalByDayLoot[key].tus / 1.0e18).toFixed(4))
@@ -730,7 +730,7 @@
                     tablemine += `<table><thead><tr><th>Date</th><th>TUS</th><th>CRA</th><th>#Mines</th><th>Win rate</th></tr></thead><tbody>`
 
                     Object.keys(totalByDayMine).sort(function (a, b) {
-                        return moment(b, 'YYYY-MM-DD').toDate() - moment(a, 'YYYY-MM-DD').toDate();
+                        return moment.utc(b, 'YYYY-MM-DD').toDate() - moment.utc(a, 'YYYY-MM-DD').toDate();
                     }).forEach(function (key) {
                         labels.push(key)
                         data_values.push((totalByDayMine[key].tus / 1.0e18).toFixed(4))
@@ -813,7 +813,7 @@
                     tabletavern += `<table><thead><tr><th>Date</th><th>TUS</th><th>#Rents</th></tr></thead><tbody>`
 
                     Object.keys(totalByDayRent).sort(function (a, b) {
-                        return moment(b, 'YYYY-MM-DD').toDate() - moment(a, 'YYYY-MM-DD').toDate();
+                        return moment.utc(b, 'YYYY-MM-DD').toDate() - moment.utc(a, 'YYYY-MM-DD').toDate();
                     }).forEach(function (key) {
                         labels.push(key)
                         data_values.push((totalByDayRent[key].tus / 1.0e18).toFixed(2))
@@ -859,7 +859,7 @@
                 let totalTUS = 0
                 let totalCRA = 0
                 Object.keys(totalByDayMine).sort(function (a, b) {
-                    return moment(b, 'YYYY-MM-DD').toDate() - moment(a, 'YYYY-MM-DD').toDate();
+                    return moment.utc(b, 'YYYY-MM-DD').toDate() - moment.utc(a, 'YYYY-MM-DD').toDate();
                 }).reverse().forEach(function (t) {
                     if (!(t in summary)) {
                         summary[t] = {}
@@ -880,7 +880,7 @@
                 })
 
                 Object.keys(totalByDayLoot).sort(function (a, b) {
-                    return moment(b, 'YYYY-MM-DD').toDate() - moment(a, 'YYYY-MM-DD').toDate();
+                    return moment.utc(b, 'YYYY-MM-DD').toDate() - moment.utc(a, 'YYYY-MM-DD').toDate();
                 }).reverse().forEach(function (t) {
                     if (!(t in summary)) {
                         summary[t] = {}
@@ -901,7 +901,7 @@
                 })
 
                 Object.keys(totalByDayRent).sort(function (a, b) {
-                    return moment(b, 'YYYY-MM-DD').toDate() - moment(a, 'YYYY-MM-DD').toDate();
+                    return moment.utc(b, 'YYYY-MM-DD').toDate() - moment.utc(a, 'YYYY-MM-DD').toDate();
                 }).reverse().forEach(function (t) {
                     if (!(t in summary)) {
                         summary[t] = {}
@@ -957,7 +957,7 @@
                     data_values = []
 
                     Object.keys(summary).sort(function (a, b) {
-                        return moment(b, 'YYYY-MM-DD').toDate() - moment(a, 'YYYY-MM-DD').toDate();
+                        return moment.utc(b, 'YYYY-MM-DD').toDate() - moment.utc(a, 'YYYY-MM-DD').toDate();
                     }).forEach(function (key) {
                         labels.push(key)
                         data_values.push((summary[key].total_tus / 1.0e18).toFixed(2))
