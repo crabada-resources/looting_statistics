@@ -552,6 +552,7 @@
 
                         const transactions = response["result"]["data"]
                         transactions.forEach(t => {
+                            if (t.lender.toUpperCase() !== wallet.toString().toUpperCase()) { return; }
                             const price = t.price
                             totalTUSRent += price
                             totalRents += 1
