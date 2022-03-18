@@ -279,7 +279,7 @@
         const totalByDayRent = {}
 
         requests = []
-        requests.push(fetch(`https://idle-api.crabada.com/public/idle/mines?looter_address=${wallet}&limit=20&status=close`).then(response => response.json()))
+        requests.push(fetch(`https://idle-api.crabada.com/public/idle/mines?looter_address=${wallet}&limit=8&status=close`).then(response => response.json()))
         requests.push(fetch(`https://idle-api.crabada.com/public/idle/mines?user_address=${wallet}&status=close&limit=20`).then(response => response.json()))
         requests.push(fetch(`https://idle-api.crabada.com/public/idle/crabadas/out-game?user_address=${wallet}&order=desc&limit=50`).then(response => response.json()))
         requests.push(fetch(`https://idle-api.crabada.com/public/idle/crabadas/for-lending?user_address=${wallet}&limit=50`).then(response => response.json()))
